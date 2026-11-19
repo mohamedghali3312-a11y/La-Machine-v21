@@ -60,7 +60,7 @@ theorem goldbachCoprimeQ (S r m : Nat) (h : Nat.gcd (2 * r + 1) S = 1) :
   have h1 : 2 * (r + m * S) + 1 = d * k1 := hk1
   have h2 : S = d * k2 := hk2
   rw [Nat.mul_sub_left_distrib, <- Nat.mul_left_comm]
-  rw [<- h1, <- h2]
+  rw [<- hk1, <- hk2]
   omega
 
 -- 7. Divisibilité exacte de la roue pondérée W par la roue primorielle V (Riemann / Robin)
