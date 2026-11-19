@@ -1,4 +1,6 @@
-# The Jumpers Model — La Machine (v7.0 to v21.1)
+[![Formal Verification & Benchmarks](https://github.com)](https://github.com)
+
+# The Jumpers Model — La Machine (v7.0 to 
 
 **Dual-Mode Prime Isolation Engine in Bounded $O(1)$ Memory, Parametric Goldbach Reduction, Spectral Riemann Connection, Lean 4 Formal Proofs, and Post-Quantum Cryptography.**
 
