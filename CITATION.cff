@@ -5,6 +5,7 @@ authors:
     given-names: "Mohamed"
     orcid: "https://orcid.org"
 title: "La-Machine-v21"
-version: 1.0.0
+version: 21.2.0
+doi: "10.5281/zenodo.24370704"
 date-released: 2026-11-19
 url: "https://github.com"
