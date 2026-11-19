@@ -1,10 +1,11 @@
 -- Preuves formelles autonomes en Lean 4 pur (v21.1) — Mohamed Ghali
+theorem mirrorWheelSym (V r : Nat) (h1 : r <= V) (h2 : Nat.Coprime r V) : Nat.Coprime (V - r) V := by
+  rw [Nat.coprime_iff_gcd_eq_one] at h2 ⊢
+  exact Nat.dvd_antisymm (Nat.dvd_gcd (Nat.gcd_dvd_right _ _) (by have ha := Nat.gcd_dvd_left (V - r) V; have hb := Nat.gcd_dvd_right (V - r) V; rw [Nat.dvd_iff_mod_eq_zero] at ha hb ⊢; omega)) (Nat.one_dvd _)
 
--- 1. Symétrie miroir des résidus premiers avec V_k
-theorem mirrorWheelCoprimeSymmetry (V r : Nat) (h_le : r  Pm + Qm = N := by
-  intro C N Qm Pm h_le
-  dsimp only [C, N, Qm, Pm]
+theorem goldbachParamId (S K r m : Nat) (h : m <= K) : (2 * S * (K - m) + 1) + (2 * (r + m * S) + 1) = 2 * (K * S + r) + 2 := by
   omega
+
 
 -- 3. Récurrence exacte des maillons de Cunningham : 2 * p_m + 1 = p_{m+1}
 theorem cunninghamLinkFormula (A m : Nat) :
