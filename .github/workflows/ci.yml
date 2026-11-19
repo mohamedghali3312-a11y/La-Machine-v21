@@ -36,10 +36,8 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: LaMachine_v21.tex
-           
-      - name: Public       args: -xelatex -interaction=nonstopmode
-        args: -xelatex -interaction=nonstopmode
-
+          args: -xelatex -interaction=nonstopmode
+      - name: Publication du PDF téléchargeable
         uses: actions/upload-artifact@v4
         with:
           name: LaMachine_v21_Article_PDF
