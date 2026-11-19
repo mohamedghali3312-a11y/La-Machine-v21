@@ -1,7 +1,7 @@
 name = "la_machine_v21"
 version = "21.1.0"
 keywords = ["math", "number-theory", "primes", "lean4", "post-quantum"]
-defaultTargets = ["la_machine_v21_proofs"]
+defaultTargets = ["LaMachineV21"]
 
 [leanOptions]
 pp.unicode.fun = true
@@ -13,4 +13,5 @@ scope = "leanprover-community"
 rev = "v4.13.0"
 
 [[lean_lib]]
-name = "la_machine_v21_proofs"
+name = "LaMachineV21"
+roots = ["la_machine_v21_proofs"]
