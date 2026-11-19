@@ -24,10 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Installation et configuration de Lean 4
-        run: |
-          curl https://githubusercontent.com -sSf | sh -s -- -y
-          source $HOME/.elan/env
-          lake update
       - name: Vérification des 5 théorèmes avec Mathlib
         uses: leanprover/lean-action@v1
+        with:
+          lake-update: true
