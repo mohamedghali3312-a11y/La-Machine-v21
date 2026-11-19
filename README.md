@@ -1,4 +1,5 @@
-[![Formal Verification & Benchmarks](https://github.com)](https://github.com)
+
+![Lean 4](https://shields.io) ![Python](https://shields.io)
 
 # The Jumpers Model — La Machine (v7.0 to 
 
