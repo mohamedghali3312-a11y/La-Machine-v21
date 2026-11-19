@@ -2,13 +2,10 @@
 theorem mirrorWheelSym (V r : Nat) (h1 : r <= V) (h2 : Nat.Coprime r V) : Nat.Coprime (V - r) V := by
   rw [Nat.coprime_iff_gcd_eq_one] at h2 ⊢
   exact Nat.dvd_antisymm (Nat.dvd_gcd (Nat.gcd_dvd_right _ _) (by have ha := Nat.gcd_dvd_left (V - r) V; have hb := Nat.gcd_dvd_right (V - r) V; rw [Nat.dvd_iff_mod_eq_zero] at ha hb ⊢; omega)) (Nat.one_dvd _)
-
 theorem goldbachParamId (S K r m : Nat) (h : m <= K) : (2 * S * (K - m) + 1) + (2 * (r + m * S) + 1) = 2 * (K * S + r) + 2 := by
-  rw [Nat.mul_sub_left_distrib, Nat.mul_add, Nat.mul_comm m S, Nat.mul_left_comm 2 S m]
+  have h1 : 2 * S * (K - m) + 2 * (m * S) = 2 * (K * S) := by
+    rw [Nat.mul_sub_left_distrib, Nat.mul_comm m S, ← Nat.mul_assoc 2 S m, Nat.sub_add_cancel (Nat.mul_le_mul_left (2 * S) h), Nat.mul_assoc, Nat.mul_comm S K]
   omega
-
-
-
 -- 3. Récurrence exacte des maillons de Cunningham : 2 * p_m + 1 = p_{m+1}
 theorem cunninghamLinkFormula (A m : Nat) :
     2 * (2 ^ (m + 1) * A + (2 ^ (m + 1) - 1)) + 1 = 2 ^ (m + 2) * A + (2 ^ (m + 2) - 1) := by
