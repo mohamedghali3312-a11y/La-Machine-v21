@@ -44,3 +44,17 @@ theorem nttProthStructure (n K : Nat) :
   intro q_n
   dsimp only [q_n]
   omega
+-- 6. Invariance de la coprimalité de Q_m avec le socle S (Goldbach)
+theorem goldbachCoprimeQ (S r m : Nat) (h : Nat.gcd (2 * r + 1) S = 1) :
+    Nat.gcd (2 * (r + m * S) + 1) S = 1 := by
+  have h_eq : 2 * (r + m * S) + 1 = (2 * r + 1) + S * (2 * m) := by
+    omega
+  rw [h_eq, Nat.gcd_add_mul_right_right]
+  exact h
+
+-- 7. Divisibilité exacte de la roue pondérée W par la roue primorielle V (Riemann / Robin)
+theorem robinWeightedWheelDiv (V W : Nat) (h_mul : ∃ k, W = V * k) (p : Nat) (hp : p ∣ V) :
+    p ∣ W := by
+  rcases h_mul with ⟨k, hk⟩
+  rw [hk]
+  exact Nat.dvd_mul_right_of_dvd hp k
