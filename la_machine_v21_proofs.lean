@@ -9,7 +9,7 @@ theorem mirrorWheelSym (V r : Nat) (h1 : r <= V) (h2 : Nat.gcd r V = 1) : Nat.gc
   rw [Nat.mul_sub_left_distrib]
   omega
 
-  exact Nat.dvd_gcd (by have ha := Nat.gcd_dvd_left (V - r) V; have hb := Nat.gcd_dvd_right (V - r) V; rw [Nat.dvd_iff_mod_eq_zero] at ha hb ⊢; omega) (Nat.gcd_dvd_right (V - r) V)
+  
 
 theorem goldbachParamId (S K r m : Nat) (h : m <= K) : (2 * S * (K - m) + 1) + (2 * (r + m * S) + 1) = 2 * (K * S + r) + 2 := by
   have h1 : 2 * S * (K - m) + 2 * (m * S) = 2 * (K * S) := by
