@@ -57,7 +57,6 @@ theorem goldbachCoprimeQ (S r m : Nat) (h : Nat.gcd (2 * r + 1) S = 1) :
   rw [hk2, Nat.mul_sub_left_distrib, <- Nat.mul_assoc]
   omega
 
-
 -- 7. Divisibilité exacte de la roue pondérée W par la roue primorielle V (Riemann / Robin)
 theorem robinWeightedWheelDiv (V W p : Nat) (h_mul : Exists fun k => W = V * k)
     (hp : p ∣ V) : p ∣ W := by
