@@ -27,7 +27,7 @@ jobs:
       - name: Vérification des 5 théorèmes Lean 4
         uses: leanprover/lean-action@v1
 
-    build-pdf:
+  build-pdf:
     name: Compilation PDF Article v21.1
     runs-on: ubuntu-latest
     steps:
@@ -42,4 +42,3 @@ jobs:
         with:
           name: LaMachine_v21_Article_PDF
           path: LaMachine_v21.pdf
-
