@@ -51,7 +51,7 @@ theorem goldbachCoprimeQ (S r m : Nat) (h : Nat.gcd (2 * r + 1) S = 1) :
   
   apply Nat.dvd_antisymm _ (Nat.one_dvd _)
   rw [<- h]
-apply Nat.dvd_gcd _ (Nat.gcd_dvd_right _ _)
+  apply Nat.dvd_gcd _ (Nat.gcd_dvd_right _ _)
 
   let d := Nat.gcd (2 * (r + m * S) + 1) S
   rcases Nat.gcd_dvd_left (2 * (r + m * S) + 1) S with ⟨k1, hk1⟩
