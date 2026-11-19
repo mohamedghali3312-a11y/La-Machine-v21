@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "Si vous utilisez ce logiciel ou ces travaux, merci de les citer comme suit."
+authors:
+  - family-names: "Ghali"
+    given-names: "Mohamed"
+    orcid: "https://orcid.org"
+title: "La-Machine-v21"
+version: 1.0.0
+date-released: 2026-11-19
+url: "https://github.com"
