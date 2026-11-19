@@ -51,10 +51,12 @@ theorem goldbachCoprimeQ (S r m : Nat) (h : Nat.gcd (2 * r + 1) S = 1) :
     omega
   rw [h_eq, Nat.gcd_add_mul_right_right]
   exact h
-
 -- 7. Divisibilité exacte de la roue pondérée W par la roue primorielle V (Riemann / Robin)
-theorem robinWeightedWheelDiv (V W : Nat) (h_mul : ∃ k, W = V * k) (p : Nat) (hp : p ∣ V) :
-    p ∣ W := by
-  rcases h_mul with ⟨k, hk⟩
-  rw [hk]
-  exact Nat.dvd_mul_right_of_dvd hp k
+theorem robinWeightedWheelDiv (V W p : Nat) (h_mul : Exists fun k => W = V * k)
+    (hp : p | V) : p | W := by
+  rcases h_mul with ⟨k1, hk1⟩
+  rcases hp with ⟨k2, hk2⟩
+  refine ⟨k2 * k1, ?_⟩
+  rw [hk1, hk2, Nat.mul_assoc]
+
+
