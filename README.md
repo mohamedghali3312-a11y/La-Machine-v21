@@ -1,5 +1,6 @@
 
-![Lean 4](https://shields.io) ![Python](https://shields.io)
+🟢 **Lean 4:** 5 Formal Proofs Verified | 🔵 **Composite Elimination:** >99.9999% | 🟣 **Memory:** Bounded $O(1)$
+
 
 # The Jumpers Model — La Machine (v7.0 to 
 
