@@ -51,15 +51,16 @@ theorem goldbachCoprimeQ (S r m : Nat) (h : Nat.gcd (2 * r + 1) S = 1) :
   
   apply Nat.dvd_antisymm _ (Nat.one_dvd _)
   rw [<- h]
+apply Nat.dvd_gcd _ (Nat.gcd_dvd_right _ _)
 
-  set d := Nat.gcd (2 * (r + m * S) + 1) S
+  let d := Nat.gcd (2 * (r + m * S) + 1) S
   rcases Nat.gcd_dvd_left (2 * (r + m * S) + 1) S with ⟨k1, hk1⟩
   rcases Nat.gcd_dvd_right (2 * (r + m * S) + 1) S with ⟨k2, hk2⟩
   refine ⟨k1 - 2 * m * k2, ?_⟩
   have h1 : 2 * (r + m * S) + 1 = d * k1 := hk1
   have h2 : S = d * k2 := hk2
-  rw [h2] at h1
-  rw [Nat.mul_sub_left_distrib, <- Nat.mul_assoc]
+  rw [Nat.mul_sub_left_distrib, <- Nat.mul_left_comm]
+  rw [<- h1, <- h2]
   omega
 
 -- 7. Divisibilité exacte de la roue pondérée W par la roue primorielle V (Riemann / Robin)
