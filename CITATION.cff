@@ -3,9 +3,9 @@ message: "Si vous utilisez ce logiciel ou ces travaux, merci de les citer comme 
 authors:
   - family-names: "Ghali"
     given-names: "Mohamed"
-    orcid: "https://orcid.org"
+    orcid: "https://orcid.org/0009-0006-3364-5341"
 title: "La-Machine-v21"
 version: 21.2.0
 doi: "10.5281/zenodo.24370704"
 date-released: 2026-11-19
-url: "https://github.com"
+url: "https://github.com/mohamedghali3312-a11y/La-Machine-v21"
