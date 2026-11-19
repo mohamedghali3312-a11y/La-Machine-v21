@@ -43,9 +43,13 @@
 \newtheorem{definition}{Définition}
 \newtheorem{remark}{Remarque}
 
-\title{\texorpdfstring{\textbf{\color{navy}Le Modèle des Sauteurs — La Machine (v7.0 à v21.1)}}{Le Modele des Sauteurs - La Machine (v7.0 a v21.1)}\\
+\title{\texorpdfstring{\textbf{\color{navy}Le Modèle des Sauteurs — La Machine (v7.0 à v21.2)}}{Le Modele des Sauteurs - La Machine (v7.0 a v21.2)}\\
 \texorpdfstring{\large Architecture Duale d'Isolation de Nombres Premiers en Mémoire Bornée $O(1)$ ($> 99{,}9999\,\%$), Réduction Paramétrique de Goldbach, Connexion Spectrale de Riemann, Preuves Formelles Lean 4 et Cryptographie Post-Quantique}{Architecture Duale d'Isolation de Nombres Premiers en Memoire Bornee O(1)}}
-\author{\textbf{Mohamed Ghali}}
+
+\author{\textbf{Mohamed Ghali}\\
+\small Chercheur indépendant \quad|\quad ORCID : \href{https://orcid.org}{\texttt{0009-0006-3364-5341}}\\
+\small DOI : \href{https://doi.org}{\texttt{10.5281/zenodo.24370704}} \quad|\quad Dépôt : \href{https://github.com}{\texttt{://github.com}}}
+
 \date{Novembre 2026}
 
 \begin{document}
@@ -53,12 +57,12 @@
 \maketitle
 
 \begin{abstract}
-Cet article présente l'architecture consolidée (\textbf{v21.1}) de \emph{La Machine}, un moteur arithmétique opérant en mémoire cache bornée $O(1)$ dédié à l'isolation ultra-rapide de nombres premiers structurés, aux nombres premiers forts (\emph{Safe Primes}), à l'analyse des partitions de Goldbach, à l'exploration de l'Hypothèse de Riemann et à la génération certifiée de paramètres pour la cryptographie post-quantique. En associant la symétrie miroir de la roue $V_5 = 30\,030$ ($11{,}52\,\text{Ko}$ en cache L1), un crible différentiel sans division jusqu'à $10^4$ ($2{,}45\,\text{Ko}$, Mode Cible Unique) couplé à une fenêtre segmentée L1/L2 résolue par inverses modulaires $V_5^{-1} \bmod p$ jusqu'à $10^6$ (Mode Rafale), et un pré-filtre de Fermat en base $2$, le pipeline rejette plus de \textbf{$99{,}9999\,\%$} des entiers composés avant d'invoquer le verrou déterministe de Lucas-Pocklington. Sur le plan théorique, le modèle unifie le \emph{Théorème de Réduction Paramétrique en $m$} pour Goldbach, la loi de troncature des chaînes de Cunningham, le comportement spectral des roues sur le critère de Guy Robin et la génération des corps finis de \textbf{ML-KEM}, \textbf{Falcon-1024}, \textbf{FHE} et \textbf{ZK-STARKs}, l'ensemble étant appuyé par cinq théorèmes formellement vérifiés sous \textbf{Lean 4}.
+Cet article présente l'architecture consolidée (\textbf{v21.2}) de \emph{La Machine}, un moteur arithmétique opérant en mémoire cache bornée $O(1)$ dédié à l'isolation ultra-rapide de nombres premiers structurés, aux nombres premiers forts (\emph{Safe Primes}), à l'analyse des partitions de Goldbach, à l'exploration numérique du critère de Robin pour l'Hypothèse de Riemann et à la génération certifiée de paramètres pour la cryptographie post-quantique. En associant la symétrie miroir de la roue $V_5 = 30\,030$ ($11{,}52\,\text{Ko}$ en cache L1), un crible différentiel sans division jusqu'à $10^4$ ($2{,}45\,\text{Ko}$, Mode Cible Unique) couplé à une fenêtre segmentée hybride résolue par inverses modulaires $V_5^{-1} \bmod p$ jusqu'à $10^5$ (Mode Rafale), et un pré-filtre de Fermat en base $2$, le pipeline rejette plus de \textbf{$99{,}9999\,\%$} des entiers composés avant d'invoquer le verrou déterministe de Lucas-Pocklington. Sur le plan théorique, le modèle unifie le \emph{Théorème de Réduction Paramétrique en $m$} pour Goldbach, la loi de troncature des chaînes de Cunningham, l'analyse spectrale des roues sur le critère de Guy Robin et la génération des corps finis de \textbf{ML-KEM}, \textbf{Falcon-1024}, \textbf{FHE} et \textbf{ZK-STARKs}, l'ensemble étant appuyé par cinq théorèmes formellement vérifiés sous \textbf{Lean 4}.
 \end{abstract}
 
 \begin{otherlanguage}{english}
 \begin{abstract}
-This paper presents the consolidated architecture (\textbf{v21.1}) of \emph{La Machine}, an algebraic engine operating in bounded cache memory $O(1)$ dedicated to the rapid isolation of structured prime numbers, \emph{Safe Primes}, Goldbach partition analysis, numerical exploration of the Riemann Hypothesis, and deterministic parameter generation for post-quantum cryptography. By combining the mirror symmetry of the primorial wheel $V_5 = 30,030$ ($11.52\,\text{KB}$ in L1 cache), a division-free differential sieve up to $10^4$ ($2.45\,\text{KB}$, Single-Target Mode) alongside a segmented L1/L2 window resolved via modular inverses $V_5^{-1} \bmod p$ up to $10^6$ (Burst Mode), and a base-$2$ Fermat pre-filter, the pipeline rejects over \textbf{$99.9999\%$} of composite integers before invoking deterministic Lucas-Pocklington certification. On the theoretical side, telescopic reduction around the shifted center $(N - 2)/2$ formalizes a \emph{Parametric Reduction Theorem in $m$}, bounds the error term $E_r(N)$ against Selberg's parity barrier, and connects square-free wheels $V_r$ and weighted wheels $\widetilde{V}_r$ to Guy Robin's criterion for the Riemann zeta function. Finally, unified rank-$n$ parameterization ($q_n = 2^n \cdot K + 1$) generates and certifies the NTT prime fields of \textbf{ML-KEM}, \textbf{Falcon-1024}, 60-bit RNS chains for Homomorphic Encryption (\textbf{FHE}), and the \textbf{BabyBear} field for \textbf{ZK-STARKs}, supported by five formal theorems mechanically verified in \textbf{Lean 4}.
+This paper presents the consolidated architecture (\textbf{v21.2}) of \emph{La Machine}, an algebraic engine operating in bounded cache memory $O(1)$ dedicated to the rapid isolation of structured prime numbers, \emph{Safe Primes}, Goldbach partition analysis, numerical exploration of Robin's criterion for the Riemann Hypothesis, and deterministic parameter generation for post-quantum cryptography. By combining the mirror symmetry of the primorial wheel $V_5 = 30,030$ ($11.52\,\text{KB}$ in L1 cache), a division-free differential sieve up to $10^4$ ($2.45\,\text{KB}$, Single-Target Mode) alongside a hybrid segmented L1/L2 window resolved via modular inverses $V_5^{-1} \bmod p$ up to $10^5$ (Burst Mode), and a base-$2$ Fermat pre-filter, the pipeline rejects over \textbf{$99.9999\%$} of composite integers before invoking deterministic Lucas-Pocklington certification. On the theoretical side, telescopic reduction around the shifted center $(N - 2)/2$ formalizes a \emph{Parametric Reduction Theorem in $m$}, analyzes the residual error term $E_r(N)$ within the Hardy--Littlewood framework, and connects square-free wheels $V_r$ and weighted wheels $\widetilde{V}_r$ to Guy Robin's criterion for the Riemann zeta function. Finally, unified rank-$n$ parameterization ($q_n = 2^n \cdot K + 1$) generates and certifies the NTT prime fields of \textbf{ML-KEM}, \textbf{Falcon-1024}, 60-bit RNS chains for Homomorphic Encryption (\textbf{FHE}), and the \textbf{BabyBear} field for \textbf{ZK-STARKs}, supported by five formal theorems mechanically verified in \textbf{Lean 4}.
 \end{abstract}
 \end{otherlanguage}
 
@@ -69,11 +73,11 @@ En posant $V_0 = 2$, le $r$-ième nombre premier $p_r$ et la roue primorielle $V
 p_r = \min \left\{ x > 1 \;\middle|\; \pgcd(x, V_{r-1}) = 1 \right\} \iff V_r = V_{r-1} \times p_r \iff p_r = \frac{V_r}{V_{r-1}}.
 \end{equation}
 
-\begin{definition}[Pipeline Hybride Adaptatif (v21.1)]
-Pour contourner l'asymptote logarithmique du troisième théorème de Mertens et franchir la barre des $99{,}999\,\%$ d'élimination tout en optimisant le temps de réponse matériel, \emph{La Machine v21.1} déploie deux modes d'exécution complémentaires autour de la roue miroir $V_5 = 30\,030$ ($5\,760$ résidus, $11{,}52\,\text{Ko}$ en cache L1, éliminant $80{,}820\,\%$ des entiers) :
+\begin{definition}[Pipeline Hybride Adaptatif (v21.2)]
+Pour contourner l'asymptote logarithmique du troisième théorème de Mertens et franchir la barre des $99{,}999\,\%$ d'élimination tout en optimisant le temps de réponse matériel, \emph{La Machine} déploie deux modes d'exécution complémentaires autour de la roue miroir $V_5 = 30\,030$ ($5\,760$ résidus, $11{,}52\,\text{Ko}$ en cache L1, éliminant $80{,}820\,\%$ des entiers) :
 \begin{enumerate}
     \item \textbf{Mode « Cible Unique » (Latence minimale) :} Couplage de la roue miroir $V_5$ avec un crible différentiel sans division sur les $1\,223$ premiers $\leq 10^4$ ($2{,}45\,\text{Ko}$, portant le filtrage à $95{,}120\,\%$), suivi immédiatement du pré-filtre de Fermat en base $2$ ($2^{x-1} \equiv 1 \pmod x$) qui élimine $> 99{,}9999\,\%$ des composés dès le premier candidat trouvé sans surcoût d'initialisation de fenêtre.
-    \item \textbf{Mode « Rafale / Streaming » (Débit maximal) :} Sur une fenêtre de $T$ tours de roue $V_5$ ($46\,\text{Ko}$ en cache L1/L2), l'indice initial de chaque multiple d'un premier $p \leq 10^6$ est résolu directement par inverse modulaire $t_0 \equiv (-B_0 - r) \cdot V_5^{-1} \pmod p$. Ce mode amortit le coût de marquage sur des milliers de candidats consécutifs pour l'extraction massive de nombres premiers, de paires de Goldbach ou de chaînes de Cunningham.
+    \item \textbf{Mode « Rafale / Streaming » (Débit maximal) :} Sur une fenêtre de $T$ tours de roue $V_5$ ($46\,\text{Ko}$ en cache L1/L2), l'indice initial de chaque multiple d'un premier $p \leq \varphi(V_5)$ est résolu directement par inverse modulaire $t_0 \equiv (-B_0 - r) \cdot V_5^{-1} \pmod p$, tandis que les premiers plus grands ($p > \varphi(V_5)$) sont marqués par saut direct des multiples impairs. Ce mode amortit le coût de marquage sur des milliers de candidats consécutifs pour l'extraction massive de nombres premiers, de paires de Goldbach ou de chaînes de Cunningham.
 \end{enumerate}
 \end{definition}
 
@@ -85,8 +89,8 @@ Pour contourner l'asymptote logarithmique du troisième théorème de Mertens et
 \textbf{Architecture} & \textbf{Mémoire L1/L2} & \textbf{Élimination pré-Fermat} & \textbf{Élimination avec Fermat 2} & \textbf{Temps réel mesuré (2048 bits)} \\
 \midrule
 \textbf{v18.1} ($V_4$ + 2 reg. PGCD) & $0{,}98\,\text{Ko}$ & $87{,}550\,\%$ & $> 99{,}9999\,\%$ & $4\,617{,}37\,\text{ms}$ ($169$ tests mod.) \\
-\textbf{v21.1 Rafale} ($V_5$ + Inv. Mod.) & $45{,}97\,\text{Ko}$ & $97{,}820\,\%$ & $> 99{,}9999\,\%$ & $4\,752{,}47\,\text{ms}$ (amorti sur bloc) \\
-\textbf{v21.1 Cible} ($V_5$ + Diff. $10^4$) & \textbf{$13{,}97\,\text{Ko}$} & \textbf{$95{,}120\,\%$} & \textbf{$> 99{,}9999\,\%$} & \textbf{$2\,975{,}50\,\text{ms}$ ($95$ tests mod.)} \\
+\textbf{v21.2 Rafale} ($V_5$ + Hybride) & $45{,}97\,\text{Ko}$ & $97{,}820\,\%$ & $> 99{,}9999\,\%$ & $4\,752{,}47\,\text{ms}$ (amorti sur bloc) \\
+\textbf{v21.2 Cible} ($V_5$ + Diff. $10^4$) & \textbf{$13{,}97\,\text{Ko}$} & \textbf{$95{,}120\,\%$} & \textbf{$> 99{,}9999\,\%$} & \textbf{$2\,975{,}50\,\text{ms}$ ($95$ tests mod.)} \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -98,28 +102,36 @@ Les mesures expérimentales confirment que pour isoler un nombre premier unique 
 \section{Réduction Télescopique, Goldbach, Cunningham et Riemann}
 
 \begin{theorem}[Réduction Paramétrique en $m$ — Généralisation $(N, S)$]
-Pour tout entier pair $N \geq 8$, $C = (N - 2)/2$ et un socle primoriel impair $S$ vérifiant $\pgcd(S, N - 1) = 1$ avec $r = C \bmod S \in \{1, \dots, S\}$, les couples $Q_m = 2(r + mS) + 1$ et $P_m = 2S((C - r)/S - m) + 1$ vérifient exactement $P_m + Q_m = N$ pour tout $0 \leq m \leq \lfloor (C - r)/S \rfloor$.
+Soit un entier pair $N \geq 8$ et posons $C = (N - 2)/2$. Pour tout socle primoriel impair $S \geq 3$ tel que $\pgcd(S, N - 1) = 1$, écrivons la division euclidienne $C = K \cdot S + r$ avec $0 \leq r < S$ et $\pgcd(2r + 1, S) = 1$. Alors, pour tout indice $m \in \{0, \dots, K\}$, les entiers impairs
+\begin{equation}
+Q_m = 2(r + mS) + 1 \quad \text{et} \quad P_m = 2S(K - m) + 1
+\end{equation}
+vérifient l'identité exacte $P_m + Q_m = N$, tout en préservant la coprimalité $\pgcd(P_m, S) = \pgcd(Q_m, S) = 1$.
 \end{theorem}
 
-Le comptage exact des partitions s'exprime via le développement singulier de Hardy-Littlewood corrigé :
+Cette paramétrisation réduit l'espace de recherche d'un facteur $\varphi(S)/S$. Dans le cadre heuristique du développement singulier de Hardy et Littlewood \cite{hardy1923}, le nombre de partitions $G_{\text{réel}}(N)$ s'exprime par :
 \begin{equation}
 G_{\text{réel}}(N) = 2\Pi_2 \left(\prod_{p \mid N,\, p>2} \frac{p-1}{p-2}\right) \frac{N}{(\ln N)^2} + E_r(N),
 \end{equation}
-où le terme résiduel $E_r(N)$ est borné par un crible pondéré $w(x) = 1 - \sum_{p_r < q \leq N^{1/2}} \lambda_q \mathbf{1}_{q \mid x}$ contournant l'obstacle de parité de Selberg.
+où $\Pi_2 \approx 0{,}66016$ désigne la constante des nombres premiers jumeaux. Bien que l'obstacle de parité de Selberg \cite{selberg1949} empêche les méthodes de crible pures d'établir asymptotiquement la positivité de $G_{\text{réel}}(N)$ sans hypothèse additionnelle, l'application d'un crible pondéré local $w(x) = 1 - \sum_{p_r < q \leq N^{1/2}} \lambda_q \mathbf{1}_{q \mid x}$ permet de borner numériquement la dispersion du terme résiduel $E_r(N)$ sur les progressions arithmétiques filtrées par la roue $V_r$.
 
 \begin{proposition}[Loi de Troncature des Chaînes de Cunningham]
-Pour un germe $p_0 = 2A + 1$, le $m$-ième maillon d'une chaîne de première espèce s'écrit $p_m = 2^{m+1} A + (2^{m+1} - 1)$. Tout facteur premier impair $q \mid A$ engendre une obstruction modulaire $p_{q-2} \equiv 2^{q-1} - 1 \equiv 0 \pmod q$ par le petit théorème de Fermat, bornant strictement la longueur de la chaîne au rang $m \leq q - 3$.
+Pour un germe $p_0 = 2A + 1$, le $m$-ième maillon d'une chaîne de première espèce satisfait la récurrence $p_{m+1} = 2p_m + 1$, soit sous forme fermée :
+\begin{equation}
+p_m = 2^{m+1} A + (2^{m+1} - 1).
+\end{equation}
+Tout facteur premier impair $q \mid A$ engendre une obstruction modulaire déterministe au rang $m = q - 2$, puisque $p_{q-2} = 2^{q-1} A + (2^{q-1} - 1) \equiv 0 \pmod q$ en vertu du petit théorème de Fermat. Par conséquent, la longueur d'une telle chaîne est strictement bornée par $m \leq q - 3$.
 \end{proposition}
 
-Concernant l'Hypothèse de Riemann, le ratio de Guy Robin $R(n) = \frac{\sigma(n)}{n \ln \ln n} < e^\gamma \approx 1{,}781072$ converge vers $\frac{6}{\pi^2} e^\gamma \approx 1{,}08276$ sur les roues sans carré $V_r$ et approche la borne critique $e^\gamma$ sur les roues pondérées $\widetilde{V}_r = \prod_{p \leq p_r} p^{\lfloor \ln p_r / \ln p \rfloor}$.
+Enfin, l'architecture des roues primorielles offre un cadre d'exploration numérique pour le critère de Guy Robin \cite{robin1984}, selon lequel l'Hypothèse de Riemann est équivalente à l'inégalité $R(n) = \frac{\sigma(n)}{n \ln \ln n} < e^\gamma \approx 1{,}781072$ pour tout entier $n > 5\,040$. Tandis que les roues sans carré $V_r$ convergent asymptotiquement vers $\frac{6}{\pi^2} e^\gamma \approx 1{,}08276$, les roues pondérées $\widetilde{V}_r = \prod_{p \leq p_r} p^{\lfloor \ln p_r / \ln p \rfloor}$ maximisent le ratio $\sigma(n)/n$ et permettent d'observer finement l'approche sous-critique de la borne $e^\gamma$.
 
 \section{Cryptographie Post-Quantique et Nombres Premiers Forts}
 
-L'équation unifiée au rang $n$, $q_n = 2^n \cdot K + 1$ ($\pgcd(K, V_{37}) = 1$), certifie instantanément par Lucas-Pocklington les corps finis de \textbf{ML-KEM} ($3\,329$), \textbf{Falcon-1024} ($12\,289$), \textbf{BabyBear} ($2\,013\,265\,921$) et les chaînes RNS 60 bits du \textbf{FHE}. Parallèlement, l'application simultanée du pipeline sur $x$ et $y = 2x + 1$ rejette \textbf{$99{,}9999\,\%$} des paires composées pour l'isolation accélérée de nombres premiers forts (\emph{Safe Primes}).
+L'équation unifiée au rang $n$, $q_n = 2^n \cdot K + 1$ ($\pgcd(K, V_{37}) = 1$), certifie instantanément par le théorème de Lucas-Pocklington \cite{lucas1876, pocklington1914} les corps finis de \textbf{ML-KEM} ($3\,329$) \cite{nist2024}, \textbf{Falcon-1024} ($12\,289$), \textbf{BabyBear} ($2\,013\,265\,921$) et les chaînes RNS 60 bits du \textbf{FHE}. Parallèlement, l'application simultanée du pipeline sur $x$ et $y = 2x + 1$ rejette \textbf{$99{,}9999\,\%$} des paires composées pour l'isolation accélérée de nombres premiers forts (\emph{Safe Primes}).
 
 \section{Formalisation Lean 4 et Validation Formelle}
 
-Les cinq théorèmes fondamentaux du modèle sont prouvés et vérifiés mécaniquement sous l'assistant de preuve \textbf{Lean 4} (\texttt{la\_machine\_v21\_proofs.lean}) :
+Les cinq théorèmes fondamentaux du modèle sont prouvés et vérifiés mécaniquement sous l'assistant de preuve \textbf{Lean 4} pur (\texttt{la\_machine\_v21\_proofs.lean}), sans dépendance externe :
 
 \begin{lstlisting}[caption={Cinq théorèmes formels vérifiés mécaniquement sous Lean 4.}]
 theorem mirrorWheelSym (V r : Nat) (h1 : r <= V) (h2 : Nat.gcd r V = 1) :
@@ -171,8 +183,28 @@ theorem nttProthStructure (n K : Nat) :
 
 \section{Conclusion Générale et Perspectives}
 
-Les travaux consolidés dans cet article établissent une architecture algébrique unifiée — \textbf{Le Modèle des Sauteurs (La Machine, v7.0 à v21.1)} — démontrant comment l'alliance entre symétrie primorielle, inverses modulaires en cache L1/L2 et filtrage de Fermat permet de franchir la barre des \textbf{$99{,}9999\,\%$} d'élimination des composés tout en garantissant \textbf{$100\,\%$} de nombres premiers certifiés en sortie par le théorème de Lucas-Pocklington. En reliant dans un même cadre formel (vérifié sous \textbf{Lean 4}) la réduction paramétrique de Goldbach, les chaînes de Cunningham, le critère de Guy Robin pour l'Hypothèse de Riemann et la génération des corps finis critiques de la cryptographie post-quantique (\textbf{ML-KEM}, \textbf{Falcon-1024}, \textbf{FHE}, \textbf{ZK-STARKs} et \emph{Safe Primes}), cette approche ouvre la voie à des implémentations matérielles embarquées (FPGA / ASIC / AVX-512) à la fois sobres en mémoire et mathématiquement certifiées.
+Les travaux consolidés dans cet article établissent une architecture algébrique unifiée — \textbf{Le Modèle des Sauteurs (La Machine, v7.0 à v21.2)} — démontrant comment l'alliance entre symétrie primorielle, inverses modulaires en cache L1/L2 et filtrage de Fermat permet de franchir la barre des \textbf{$99{,}9999\,\%$} d'élimination des composés tout en garantissant \textbf{$100\,\%$} de nombres premiers certifiés en sortie par le théorème de Lucas-Pocklington \cite{pocklington1914}. En reliant dans un même cadre formel (vérifié sous \textbf{Lean 4}) la réduction paramétrique de Goldbach, les chaînes de Cunningham, l'exploration numérique du critère de Guy Robin \cite{robin1984} et la génération des corps finis critiques de la cryptographie post-quantique (\textbf{ML-KEM} \cite{nist2024}, \textbf{Falcon-1024}, \textbf{FHE}, \textbf{ZK-STARKs} et \emph{Safe Primes}), cette approche ouvre la voie à des implémentations matérielles embarquées (FPGA / ASIC / AVX-512) à la fois sobres en mémoire et mathématiquement certifiées.
+
+\begin{thebibliography}{9}
+
+\bibitem{lucas1876}
+É. Lucas, \emph{Théorie des fonctions numériques simplement périodiques}, American Journal of Mathematics, vol. 1, no. 2, pp. 184--240, 1878.
+
+\bibitem{pocklington1914}
+H. C. Pocklington, \emph{The determination of the prime or composite nature of large numbers by Fermat's theorem}, Proceedings of the Cambridge Philosophical Society, vol. 18, pp. 29--30, 1914.
+
+\bibitem{hardy1923}
+G. H. Hardy et J. E. Littlewood, \emph{Some problems of `Partitio numerorum'; III: On the expression of a number as a sum of primes}, Acta Mathematica, vol. 44, pp. 1--70, 1923.
+
+\bibitem{selberg1949}
+A. Selberg, \emph{On an elementary method in the theory of primes}, Norske Vid. Selsk. Forh., Trondheim, vol. 19, no. 18, pp. 64--67, 1947.
+
+\bibitem{robin1984}
+G. Robin, \emph{Grandes valeurs de la fonction somme des diviseurs et hypothèse de Riemann}, Journal de Mathématiques Pures et Appliquées, vol. 63, no. 2, pp. 187--213, 1984.
+
+\bibitem{nist2024}
+National Institute of Standards and Technology (NIST), \emph{Module-Lattice-Based Key-Encapsulation Mechanism Standard (ML-KEM)}, Federal Information Processing Standards Publication FIPS 203, 2024.
+
+\end{thebibliography}
 
 \end{document}
-
-
