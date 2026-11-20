@@ -180,11 +180,13 @@ def optimal_bombieri_vinogradov_wheel(N, safety_exponent=2.0):
 
 # 10. Entiers Colossalement Abondants (Ramanujan - Guy Robin)
 def colossal_abundant_riemann_probe(epsilon_list=(0.15, 0.10, 0.07)):
+
+    
     exp_gamma = math.exp(0.5772156649015328606)
     results = []
     for eps in epsilon_list:
-          p_limit = int((1.0 + 1.0 / eps) ** (1.0 / (1.0 + eps))) + 2
-          primes = [p for p in range(2, p_limit + 1) if is_prime_deterministic(p)]
+        p_limit = int((1.0 + 1.0 / eps) ** (1.0 / (1.0 + eps))) + 2
+        primes = [p for p in range(2, p_limit + 1) if is_prime_deterministic(p)]
         ln_N, abundance = 0.0, 1.0
         for p in primes:
             a_p = int(math.floor((math.log(p ** (1.0 + eps) - 1.0) - math.log(p ** eps - 1.0)) / math.log(p))) - 1
@@ -194,7 +196,9 @@ def colossal_abundant_riemann_probe(epsilon_list=(0.15, 0.10, 0.07)):
         ratio = abundance / math.log(ln_N)
         results.append({"epsilon": eps, "ratio_robin_R": round(ratio, 6), "marge_riemann": round(exp_gamma - ratio, 6)})
     return results
-    # 11. Reduction paresseuse K-RED (Lazy NTT) sur d couches
+# 11. Reduction paresseuse K-RED (Lazy NTT) sur d couches
+
+tion paresseuse K-RED (Lazy NTT) sur d couches
 def simulate_lazy_kred_ntt(X, k, n, layers=4):
     p = k * (1 << n) + 1
     assert is_prime_deterministic(p)
