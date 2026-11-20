@@ -132,3 +132,59 @@ theorem prothFastReductionIdentity (k n H L : Nat) :
         rw [Nat.mul_comm k H, Nat.mul_assoc]
     _ = H * (k * (2 ^ n) + 1) + k * L := by
         rw [Nat.mul_add, Nat.mul_one]
+-- 13. Stabilite multiplicative de la reduction paresseuse K-RED sur deux couches
+theorem prothKRedTwoLayers (k p X Y Z q1 q2 : Nat)
+    (h1 : k * X = q1 * p + Y)
+    (h2 : k * Y = q2 * p + Z) :
+    (k * k) * X = (k * q1 + q2) * p + Z := by
+  calc (k * k) * X
+      = k * (k * X) := by rw [Nat.mul_assoc]
+    _ = k * (q1 * p + Y) := by rw [h1]
+    _ = k * (q1 * p) + k * Y := by rw [Nat.mul_add]
+    _ = (k * q1) * p + (q2 * p + Z) := by rw [<- Nat.mul_assoc, h2]
+    _ = ((k * q1) * p + q2 * p) + Z := by rw [Nat.add_assoc]
+    _ = (k * q1 + q2) * p + Z := by rw [<- Nat.add_mul]
+
+-- 14. Inversion algebrique exacte du papillon NTT (Cooley-Tukey -> Gentleman-Sande)
+theorem nttButterflyExactInverse (U V w w_inv : Int)
+    (h_inv : w * w_inv = 1) :
+    let U' := U + w * V
+    let V' := U - w * V
+    (U' + V' = 2 * U) /\ ((U' - V') * w_inv = 2 * V) := by
+  refine ⟨by omega, ?_⟩
+  have h_diff : (U + w * V) - (U - w * V) = 2 * (w * V) := by omega
+  rw [h_diff]
+  calc (2 * (w * V)) * w_inv
+      = 2 * ((w * w_inv) * V) := by
+        rw [Int.mul_assoc 2, Int.mul_assoc w, Int.mul_comm V w_inv, <- Int.mul_assoc w]
+    _ = 2 * (1 * V) := by rw [h_inv]
+    _ = 2 * V := by rw [Int.one_mul]
+
+-- 15. Exactitude de la multiplication de Karatsuba dans F_{p^2} = F_p[u]/(u^2 - beta)
+theorem fp2KaratsubaExact (a0 a1 b0 b1 beta : Int) :
+    let m0 := a0 * b0
+    let m1 := a1 * b1
+    let m2 := (a0 + a1) * (b0 + b1)
+    (m0 + beta * m1 = a0 * b0 + beta * (a1 * b1)) /\
+    (m2 - m0 - m1 = a0 * b1 + a1 * b0) := by
+  refine ⟨rfl, ?_⟩
+  have h_exp : (a0 + a1) * (b0 + b1) = a0 * b0 + a0 * b1 + a1 * b0 + a1 * b1 := by
+    calc (a0 + a1) * (b0 + b1)
+        = (a0 + a1) * b0 + (a0 + a1) * b1 := by rw [Int.mul_add]
+      _ = (a0 * b0 + a1 * b0) + (a0 * b1 + a1 * b1) := by rw [Int.add_mul, Int.add_mul]
+      _ = a0 * b0 + a0 * b1 + a1 * b0 + a1 * b1 := by omega
+  omega
+
+-- 16. Croissance stricte du facteur d'abondance geometrique (Riemann / Guy Robin)
+theorem abundanceFactorStrictGrowth (p a : Nat) (hp : 2 <= p) :
+    p ^ a * (p - 1) < p ^ (a + 1) - 1 := by
+  have h_pow : p ^ (a + 1) = p ^ a * p := Nat.pow_succ p a
+  have h_pa_pos : 1 <= p ^ a := Nat.one_le_pow a p (by omega)
+  have h_mul : p ^ a * (p - 1) + p ^ a = p ^ a * p := by
+    calc p ^ a * (p - 1) + p ^ a
+        = p ^ a * (p - 1) + p ^ a * 1 := by rw [Nat.mul_one]
+      _ = p ^ a * ((p - 1) + 1) := by rw [<- Nat.mul_add]
+      _ = p ^ a * p := by
+          have hp_sub : (p - 1) + 1 = p := Nat.sub_add_cancel (by omega)
+          rw [hp_sub]
+  omega
