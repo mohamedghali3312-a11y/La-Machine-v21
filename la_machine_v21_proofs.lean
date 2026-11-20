@@ -174,12 +174,17 @@ theorem fp2KaratsubaExact (a0 a1 b0 b1 beta : Int) :
       _ = (a0 * b0 + a1 * b0) + (a0 * b1 + a1 * b1) := by rw [Int.add_mul, Int.add_mul]
       _ = a0 * b0 + a0 * b1 + a1 * b0 + a1 * b1 := by omega
   omega
-
 -- 16. Croissance stricte du facteur d'abondance geometrique (Riemann / Guy Robin)
 theorem abundanceFactorStrictGrowth (p a : Nat) (hp : 2 <= p) :
     p ^ a * (p - 1) < p ^ (a + 1) - 1 := by
   have h_pow : p ^ (a + 1) = p ^ a * p := Nat.pow_succ p a
-  have h_pa_pos : 1 <= p ^ a := Nat.one_le_pow a p (by omega)
+  have h_pa_pos : 1 <= p ^ a := by
+    induction a with
+    | zero => exact Nat.le_refl 1
+    | succ k ih =>
+      rw [Nat.pow_succ]
+      calc 1 = 1 * 1 := rfl
+        _ <= p ^ k * p := Nat.mul_le_mul ih (by omega)
   have h_mul : p ^ a * (p - 1) + p ^ a = p ^ a * p := by
     calc p ^ a * (p - 1) + p ^ a
         = p ^ a * (p - 1) + p ^ a * 1 := by rw [Nat.mul_one]
@@ -188,3 +193,5 @@ theorem abundanceFactorStrictGrowth (p a : Nat) (hp : 2 <= p) :
           have hp_sub : (p - 1) + 1 = p := Nat.sub_add_cancel (by omega)
           rw [hp_sub]
   omega
+
+
