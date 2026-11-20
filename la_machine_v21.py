@@ -234,7 +234,7 @@ if __name__ == "__main__":
 
     assert certify_pocklington(2013265921, 1, [2, 3, 5]) == 31
     assert optimal_bombieri_vinogradov_wheel(10**15)["socle_optimal_S"] == 15015
-    assert colossal_abundant_riemann_probe((0.15,))[0]["marge_riemann"] > 0
+    assert colossal_abundant_riemann_probe((0.05,))[0]["marge_riemann"] > 0
     assert simulate_lazy_kred_ntt(9876543210123, 15, 27, layers=4)["resultat_certifie"] == 9876543210123 % 2013265921
     assert fp2_extension_arithmetic(15, 27)["irreductible"] == "u^2 - 11"
 
