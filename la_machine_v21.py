@@ -184,7 +184,7 @@ def colossal_abundant_riemann_probe(epsilon_list=(0.15, 0.10, 0.07)):
     results = []
     for eps in epsilon_list:
           p_limit = int((1.0 + 1.0 / eps) ** (1.0 / (1.0 + eps))) + 2
-        primes = [p for p in range(2, p_limit + 1) if is_prime_deterministic(p)]
+          primes = [p for p in range(2, p_limit + 1) if is_prime_deterministic(p)]
         ln_N, abundance = 0.0, 1.0
         for p in primes:
             a_p = int(math.floor((math.log(p ** (1.0 + eps) - 1.0) - math.log(p ** eps - 1.0)) / math.log(p))) - 1
