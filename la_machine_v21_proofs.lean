@@ -186,7 +186,8 @@ theorem abundanceFactorStrictGrowth (p a : Nat) (hp : 2 <= p) (ha : 1 <= a) :
       rw [Nat.pow_succ]
       
       have h_pm : 1 <= p ^ m := by
-        clear ha 
+        clear ha h_pow
+
         induction m with
         | zero => exact Nat.le_refl 1
         | succ k ih =>
