@@ -46,7 +46,9 @@ theorem nttProthStructure (n K : Nat) :
   omega
 
 -- 6. Invariance de la coprimalité de Q_m avec le socle S (Goldbach)
-theorem goldbachCoprimeQ (S r m : Nat) (h : Nat.gcd (2 *( r + 1) S = 1) :
+theorem goldbachCoprimeQ (S r m : Nat)
+    (h : Nat.gcd (2 * r + 1) S = 1) :
+
      Nat.gcd (2 * (r + m * S) + 1) S = 1 := by
   
   apply Nat.dvd_antisymm _ (Nat.one_dvd _)
