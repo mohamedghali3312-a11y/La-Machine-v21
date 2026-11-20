@@ -174,19 +174,25 @@ theorem fp2KaratsubaExact (a0 a1 b0 b1 beta : Int) :
       _ = (a0 * b0 + a1 * b0) + (a0 * b1 + a1 * b1) := by rw [Int.add_mul, Int.add_mul]
       _ = a0 * b0 + a0 * b1 + a1 * b0 + a1 * b1 := by omega
   omega
+
 -- 16. Croissance stricte du facteur d'abondance geometrique (Riemann / Guy Robin)
 theorem abundanceFactorStrictGrowth (p a : Nat) (hp : 2 <= p) (ha : 1 <= a) :
- p ^ a * (p - 1) < p ^ (a + 1) - 1 := by
-  
-  have h_pa_pos : 1 <= p ^ a := by
-    induction a with
-    | zero => exact Nat.le_refl 1
-    | succ k ih =>
-      rw [Nat.pow_succ]
-      calc 1 = 1 * 1 := rfl
-        _ <= p ^ k * p := Nat.mul_le_mul ih (by omega)
+    p ^ a * (p - 1) < p ^ (a + 1) - 1 := by
   have h_pow : p ^ (a + 1) = p ^ a * p := Nat.pow_succ p a
-
+  have h_pa2 : 2 <= p ^ a := by
+    cases a with
+    | zero => omega
+    | succ m =>
+      rw [Nat.pow_succ]
+      have h_pm : 1 <= p ^ m := by
+        induction m with
+        | zero => exact Nat.le_refl 1
+        | succ k ih =>
+          rw [Nat.pow_succ]
+          calc 1 = 1 * 1 := rfl
+            _ <= p ^ k * p := Nat.mul_le_mul ih (by omega)
+      calc 2 = 1 * 2 := rfl
+        _ <= p ^ m * p := Nat.mul_le_mul h_pm hp
   have h_mul : p ^ a * (p - 1) + p ^ a = p ^ a * p := by
     calc p ^ a * (p - 1) + p ^ a
         = p ^ a * (p - 1) + p ^ a * 1 := by rw [Nat.mul_one]
@@ -194,17 +200,6 @@ theorem abundanceFactorStrictGrowth (p a : Nat) (hp : 2 <= p) (ha : 1 <= a) :
       _ = p ^ a * p := by
           have hp_sub : (p - 1) + 1 = p := Nat.sub_add_cancel (by omega)
           rw [hp_sub]
-  have h_pos2 : 1 <= p ^ a * p := Nat.mul_pos (by omega) (by omega)
-  
-  have h_pa2 : 2 <= p ^ a := by
-    have ha_eq : (a - 1) + 1 = a := Nat.sub_add_cancel ha
-    rw [← ha_eq, Nat.pow_succ]
-    have h_prev : 1 <= p ^ (a - 1) := by
-      induction (a - 1) with
-      | zero => exact Nat.le_refl 1
-      | succ k ih => rw [Nat.pow_succ]; exact Nat.mul_pos ih (by omega)
-    calc 2 = 1 * 2 := rfl
-      _ <= p ^ (a - 1) * p := Nat.mul_le_mul h_prev hp
   rw [h_pow]
   omega
 
