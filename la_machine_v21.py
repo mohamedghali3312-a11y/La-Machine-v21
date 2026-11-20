@@ -194,6 +194,32 @@ def colossal_abundant_riemann_probe(epsilon_list=(0.15, 0.10, 0.07)):
         ratio = abundance / math.log(ln_N)
         results.append({"epsilon": eps, "ratio_robin_R": round(ratio, 6), "marge_riemann": round(exp_gamma - ratio, 6)})
     return results
+    # 11. Reduction paresseuse K-RED (Lazy NTT) sur d couches
+def simulate_lazy_kred_ntt(X, k, n, layers=4):
+    p = k * (1 << n) + 1
+    assert is_prime_deterministic(p)
+    mask = (1 << n) - 1
+    val = X
+    for _ in range(layers):
+        val = k * (val & mask) - (val >> n)
+    final_mod_p = (val * pow(k, -layers, p)) % p
+    assert final_mod_p == (X % p)
+    return {"corps_p": p, "couches_ntt": layers, "resultat_certifie": final_mod_p}
+
+# 12. Extension Quadratique F_{p^2} = F_p[u]/(u^2 - beta) par Multiplication de Karatsuba
+def fp2_extension_arithmetic(k, n, elem_a=(12345, 67890), elem_b=(54321, 98765)):
+    p = k * (1 << n) + 1
+    assert is_prime_deterministic(p)
+    beta = next(b for b in range(2, 100) if pow(b, (p - 1) // 2, p) == p - 1)
+    def fp2_mul(x, y):
+        a0, a1 = x[0] % p, x[1] % p
+        b0, b1 = y[0] % p, y[1] % p
+        m0, m1 = (a0 * b0) % p, (a1 * b1) % p
+        m2 = ((a0 + a1) * (b0 + b1)) % p
+        return ((m0 + beta * m1) % p, (m2 - m0 - m1) % p)
+    prod = fp2_mul(elem_a, elem_b)
+    return {"corps_base_p": p, "irreductible": f"u^2 - {beta}", "produit_karatsuba": prod}
+
 
 if __name__ == "__main__":
     assert next_prime_target_mode(10**12) == 1000000000039
@@ -207,4 +233,9 @@ if __name__ == "__main__":
     assert robin_riemann_analysis(37)["Robin_ok"] is True
 
     assert certify_pocklington(2013265921, 1, [2, 3, 5]) == 31
+    assert optimal_bombieri_vinogradov_wheel(10**12)["socle_optimal_S"] == 15015
+    assert colossal_abundant_riemann_probe((0.15,))[0]["marge_riemann"] > 0
+    assert simulate_lazy_kred_ntt(9876543210123, 15, 27, layers=4)["resultat_certifie"] == 9876543210123 % 2013265921
+    assert fp2_extension_arithmetic(15, 27)["irreductible"] == "u^2 - 11"
+
     print("Tests unitaires v21.1 (Architecture Duale > 99,9999 %) valides.")
