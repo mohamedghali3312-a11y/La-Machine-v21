@@ -21,3 +21,16 @@
 \mainmatter
 
 \end{document}
+\chapter*{Préface}
+Cet ouvrage rassemble les fondements théoriques, algorithmiques et formels de \textbf{La Machine v22.0}. L'intégralité des résultats mathématiques présentés est accompagnée de sa certification mécanique en \textbf{Lean 4 pur} et d'une implémentation reproductible en \textbf{Python}.
+
+\chapter{Roues Primorielles et Mode Rafale}
+\section{Filtrage géométrique préalable}
+Pour tout nombre premier $p_r$, le socle primoriel $S_r = \prod_{p \le p_r} p$ projette la recherche sur le groupe des unités $(\mathbb{Z}/S_r\mathbb{Z})^\times$, réduisant l'espace des candidats à la fraction d'Euler $\varphi(S_r)/S_r$.
+
+\begin{theoreme}[Symétrie Miroir de la Roue Primorielle]
+Pour tout socle $S$ et tout résidu $x < S$, si $\gcd(x, S) = 1$, alors son symétrique $S - x$ vérifie également $\gcd(S - x, S) = 1$.
+\end{theoreme}
+
+\section{Le Mode Rafale (\texttt{next\_prime\_burst\_mode})}
+Grâce à la troncature d'échelle (\texttt{scaleTrunc}), lorsque la fenêtre $W < S$, l'exploration se limite à un seul tour de roue et élimine plus de $88\,\%$ des entiers composés avant le test de Miller-Rabin déterministe.
