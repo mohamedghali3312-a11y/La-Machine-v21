@@ -110,10 +110,12 @@ theorem prothHalfExponent (p k n : Nat) (hn : 1 <= n)
     (h_proth : p = k * (2 ^ n) + 1) :
     (p - 1) / 2 = k * (2 ^ (n - 1)) := by
   have h1 : p - 1 = k * (2 ^ n) := by omega
-  have h2 : 2 ^ n = 2 ^ (n - 1) * 2 := by
-    have hn_eq : n = (n - 1) + 1 := by omega
-    conv_lhs => rw [hn_eq, Nat.pow_succ]
-  rw [h1, h2, <- Nat.mul_assoc, Nat.mul_div_cancel _ (by decide : 0 < 2)]
+     
+have h2 : 2 ^ n = 2 ^ (n - 1) * 2 := by
+    cases n with
+    | zero => omega
+    | succ m => rfl
+  rw [h1, h2, <- Nat.mul_assoc, Nat.mul_div_left _ (by decide : 0 < 2)]
 
 -- 11. Identite d'ordre des racines primitives 2^n-iemes de l'unite pour la NTT
 theorem nttPrimitiveRootPower (a k n : Nat) :
