@@ -52,7 +52,7 @@ theorem goldbachCoprimeQ (S r m : Nat)
      Nat.gcd (2 * (r + m * S) + 1) S = 1 := by
   
   apply Nat.dvd_antisymm _ (Nat.one_dvd _)
-    suffices Dvd.dvd (Nat.gcd (2 * (r + m * S) + 1) S) (Nat.gcd (2 * r + 1) S) by rw [h] at this; exact this
+  suffices Dvd.dvd (Nat.gcd (2 * (r + m * S) + 1) S) (Nat.gcd (2 * r + 1) S) by rw [h] at this; exact this
 
   apply Nat.dvd_gcd _ (Nat.gcd_dvd_right _ _)
 
