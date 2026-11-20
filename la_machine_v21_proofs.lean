@@ -67,8 +67,7 @@ theorem goldbachCoprimeQ (S r m : Nat)
   have h_lin : 2 * (r + m * S) = 2 * r + 2 * m * S := by
     rw [Nat.mul_add, Nat.mul_assoc]
 
-    have h_lin : 2 * (r + m * S) + 1 = (2 * r + 1) + 2 * m * S := by rw [Nat.mul_add, Nat.mul_left_comm]
-  omega
+
 
 -- 7. Divisibilité exacte de la roue pondérée W par la roue primorielle V (Riemann / Robin)
 theorem robinWeightedWheelDiv (V W p : Nat) (h_mul : Exists fun k => W = V * k)
