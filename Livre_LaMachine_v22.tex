@@ -34,4 +34,15 @@ Pour tout socle $S$ et tout résidu $x < S$, si $\gcd(x, S) = 1$, alors son sym�
 
 \section{Le Mode Rafale (\texttt{next\_prime\_burst\_mode})}
 Grâce à la troncature d'échelle (\texttt{scaleTrunc}), lorsque la fenêtre $W < S$, l'exploration se limite à un seul tour de roue et élimine plus de $88\,\%$ des entiers composés avant le test de Miller-Rabin déterministe.
+\chapter{Cryptographie Post-Quantique et Corps Premiers NTT}
+
+\section{Certification des corps premiers de Proth}
+Les protocoles post-quantiques standardisés (\textbf{ML-KEM}, \textbf{Falcon-1024}) ainsi que les preuves ZK-STARKs (\textbf{BabyBear}, \textbf{KoalaBear}) reposent sur des corps premiers de la forme $p = k \cdot 2^n + 1$ à faible poids de Hamming.
+
+\begin{theoreme}[Racine primitive NTT et demi-exposant]
+Pour tout premier de Proth $p = k \cdot 2^n + 1$ ($n \ge 1$) et tout témoin $a$ vérifiant $a^{(p-1)/2} \equiv -1 \pmod{p}$, l'élément $\omega_{2^n} = a^k \bmod p$ satisfait $\omega_{2^n}^{2^{n-1}} \equiv -1 \pmod{p}$ et engendre un sous-groupe multiplicatif d'ordre exact $2^n$.
+\end{theoreme}
+
+\section{Réduction paresseuse K-RED et extension $\mathbb{F}_{p^2}$}
+L'identité algébrique $k \cdot (H \cdot 2^n + L) + H = H \cdot p + k \cdot L$ élimine toute division matérielle lors des papillons NTT (\texttt{prothKRedTwoLayers}). L'extension quadratique $\mathbb{F}_{p^2} = \mathbb{F}_p[u]/(u^2 - \beta)$ par multiplication de Karatsuba porte ensuite la sécurité cryptographique à $128$~bits.
 \end{document}
