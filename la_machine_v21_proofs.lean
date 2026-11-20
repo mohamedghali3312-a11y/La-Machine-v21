@@ -110,7 +110,8 @@ theorem prothHalfExponent (p k n : Nat) (hn : 1 <= n)
     (h_proth : p = k * (2 ^ n) + 1) :
     (p - 1) / 2 = k * (2 ^ (n - 1)) := by
   have h1 : p - 1 = k * (2 ^ n) := by omega
-    
+  have h2 : 2 ^ n = 2 ^ (n - 1) * 2 := by rw [<- Nat.pow_succ]; congr 1; omega
+ 
 
   have h2 : 2 ^ n = 2 ^ (n - 1) * 2 := by rw [<- Nat.pow_succ, Nat.sub_add_cancel hn]
   rw [h1, h2, <- Nat.mul_assoc, Nat.mul_div_cancel _ Nat.zero_lt_two]
