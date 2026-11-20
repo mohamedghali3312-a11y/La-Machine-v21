@@ -66,7 +66,6 @@ theorem goldbachCoprimeQ (S r m : Nat)
   rw [<- hk1, <- hk2]
   have h_lin : 2 * (r + m * S) = 2 * r + 2 * m * S := by
   rw [Nat.mul_add, Nat.mul_assoc]
-  
   rw [h_lin]
   omega
 
