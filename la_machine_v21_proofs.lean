@@ -194,7 +194,7 @@ theorem abundanceFactorStrictGrowth (p a : Nat) (hp : 2 <= p) :
       _ = p ^ a * p := by
           have hp_sub : (p - 1) + 1 = p := Nat.sub_add_cancel (by omega)
           rw [hp_sub]
-   rw [h_pow]
-   omega
+  rw [h_pow]
+  omega
 
 
