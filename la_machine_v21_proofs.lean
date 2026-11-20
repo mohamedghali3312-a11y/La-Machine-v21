@@ -105,3 +105,29 @@ theorem chenFactorsCoprimeWheel (q1 q2 S : Nat)
       (Nat.dvd_trans (Nat.gcd_dvd_left q2 S) (Nat.dvd_mul_left q2 q1))
       (Nat.gcd_dvd_right q2 S)
 
+-- 10. Structure algebrique du demi-exposant de Proth pour les corps finis NTT
+theorem prothHalfExponent (p k n : Nat) (hn : 1 <= n)
+    (h_proth : p = k * (2 ^ n) + 1) :
+    (p - 1) / 2 = k * (2 ^ (n - 1)) := by
+  have h1 : p - 1 = k * (2 ^ n) := by omega
+  have h2 : 2 ^ n = 2 ^ (n - 1) * 2 := by
+    have hn_eq : n = (n - 1) + 1 := by omega
+    conv_lhs => rw [hn_eq, Nat.pow_succ]
+  rw [h1, h2, <- Nat.mul_assoc, Nat.mul_div_cancel _ (by decide : 0 < 2)]
+
+-- 11. Identite d'ordre des racines primitives 2^n-iemes de l'unite pour la NTT
+theorem nttPrimitiveRootPower (a k n : Nat) :
+    (a ^ k) ^ (2 ^ (n - 1)) = a ^ (k * (2 ^ (n - 1))) := by
+  rw [<- Nat.pow_mul]
+
+-- 12. Identite algebrique de reduction rapide sans division pour p = k * 2^n + 1
+theorem prothFastReductionIdentity (k n H L : Nat) :
+    k * (H * (2 ^ n) + L) + H = H * (k * (2 ^ n) + 1) + k * L := by
+  calc k * (H * (2 ^ n) + L) + H
+      = k * (H * (2 ^ n)) + k * L + H := by rw [Nat.mul_add]
+    _ = (k * H) * (2 ^ n) + H + k * L := by
+        rw [<- Nat.mul_assoc, Nat.add_right_comm]
+    _ = H * (k * (2 ^ n)) + H + k * L := by
+        rw [Nat.mul_comm k H, Nat.mul_assoc]
+    _ = H * (k * (2 ^ n) + 1) + k * L := by
+        rw [Nat.mul_add, Nat.mul_one]
