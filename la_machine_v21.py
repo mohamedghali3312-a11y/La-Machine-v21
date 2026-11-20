@@ -197,8 +197,6 @@ def colossal_abundant_riemann_probe(epsilon_list=(0.15, 0.10, 0.07)):
         results.append({"epsilon": eps, "ratio_robin_R": round(ratio, 6), "marge_riemann": round(exp_gamma - ratio, 6)})
     return results
 # 11. Reduction paresseuse K-RED (Lazy NTT) sur d couches
-
-tion paresseuse K-RED (Lazy NTT) sur d couches
 def simulate_lazy_kred_ntt(X, k, n, layers=4):
     p = k * (1 << n) + 1
     assert is_prime_deterministic(p)
