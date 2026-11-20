@@ -159,6 +159,41 @@ def robin_riemann_analysis(max_prime=37):
     R_V = sigma_V / math.log(math.log(V_r))
     R_W = sigma_W / math.log(math.log(V_tilde))
     return {"p_r": max_prime, "R_V": round(R_V, 6), "R_W": round(R_W, 6), "Robin_ok": R_W < e_gamma}
+    
+# 9. Optimisation du socle primoriel S(N) sous la borne de Bombieri-Vinogradov
+def optimal_bombieri_vinogradov_wheel(N, safety_exponent=2.0):
+    assert N >= 100
+    limit_S = math.sqrt(N) / (math.log(N) ** safety_exponent)
+    small_primes = [3, 5, 7, 11, 13, 17, 19, 23, 29]
+    S = 1
+    used = []
+    for p in small_primes:
+        if S * p <= limit_S:
+            S *= p
+            used.append(p)
+        else:
+            break
+    omega = 1
+    for p in used:
+        omega *= (p - 1) if (N % p == 0) else (p - 2)
+    return {"N": N, "socle_optimal_S": S, "p_max": used[-1] if used else 1, "classes_admissibles": omega}
+
+# 10. Entiers Colossalement Abondants (Ramanujan - Guy Robin)
+def colossal_abundant_riemann_probe(epsilon_list=(0.15, 0.10, 0.07)):
+    exp_gamma = math.exp(0.5772156649015328606)
+    results = []
+    for eps in epsilon_list:
+        p_limit = int((1.0 + eps) ** (1.0 / eps)) + 2
+        primes = [p for p in range(2, p_limit + 1) if is_prime_deterministic(p)]
+        ln_N, abundance = 0.0, 1.0
+        for p in primes:
+            a_p = int(math.floor((math.log(p ** (1.0 + eps) - 1.0) - math.log(p ** eps - 1.0)) / math.log(p))) - 1
+            if a_p >= 1:
+                ln_N += a_p * math.log(p)
+                abundance *= (1.0 - p ** (-(a_p + 1))) / (1.0 - 1.0 / p)
+        ratio = abundance / math.log(ln_N)
+        results.append({"epsilon": eps, "ratio_robin_R": round(ratio, 6), "marge_riemann": round(exp_gamma - ratio, 6)})
+    return results
 
 if __name__ == "__main__":
     assert next_prime_target_mode(10**12) == 1000000000039
