@@ -1,63 +1,44 @@
+# LA MACHINE v23.0 — Arithmétique des Roues Primorielles, Cryptographie Post-Quantique & Certification Formelle en Lean 4
 
-🟢 **Lean 4:** 5 Formal Proofs Verified | 🔵 **Composite Elimination:** >99.9999% | 🟣 **Memory:** Bounded $O(1)$
-
-
-# The Jumpers Model — La Machine (v7.0 to 
-
-**Dual-Mode Prime Isolation Engine in Bounded $O(1)$ Memory, Parametric Goldbach Reduction, Spectral Riemann Connection, Lean 4 Formal Proofs, and Post-Quantum Cryptography.**
-
-* **Author:** Mohamed Ghali
-* **Version:** v21.1 (November 2026)
-* **Domains:** Analytic Number Theory, Formal Verification (Lean 4), Post-Quantum Cryptography (ML-KEM, Falcon, FHE, ZK-STARKs), High-Performance Computing (AVX-512).
+[![CI Lean 4 & Python](https://github.com)](https://github.com)
+**Auteur :** Mohamed Ghali ([ORCID : 0009-0006-3364-5341](https://orcid.org))  
+**Release actuelle :** [`v23.0`](https://github.com) (16 Théorèmes Lean 4 + 12 Modules Python + Ouvrage LaTeX/PDF)
 
 ---
 
-## Project Overview
+## Vue d'ensemble du projet
 
-**La Machine** is an algebraic engine engineered to explore large prime numbers at extreme altitudes ($10^{300}$ to $10^{2000}$ and beyond) without dynamic $O(N)$ sieve tables. By combining the mirror symmetry of primorial wheels $V_r$, a division-free differential sieve fitting inside L1/L2 CPU cache, and a base-$2$ Fermat pre-filter, the pipeline rejects **$> 99.9999\%$** of composite integers before invoking deterministic **Lucas-Pocklington certification** ($100\%$ mathematical certainty).
+**La Machine** est une architecture algorithmique et formelle dédiée à la théorie analytique des nombres, à la cryptographie post-quantique sur treillis (NTT) et aux preuves mécanisées en **Lean 4 pur** (sans dépendance externe).
 
-### Key Architectural Highlights
-1. **Adaptive Dual Pipeline (v21.1):**
-   * **Single-Target Mode (Minimum Latency):** Mirror wheel $V_5 = 30,030$ ($11.52\,\text{KB}$ in L1) + division-free differential sieve up to $10^4$ ($2.45\,\text{KB}$) + base-$2$ Fermat lock.
-   * **Burst / Streaming Mode (Maximum Throughput):** Segmented L1/L2 window ($45.97\,\text{KB}$) resolved via modular inverses $V_5^{-1} \bmod p$ up to $10^6$ ($97.82\%$ pre-Fermat elimination).
-2. **Analytic & Formal Number Theory:**
-   * **Parametric Reduction Theorem in $m$** for Goldbach partitions around the shifted center $(N - 2)/2$.
-   * **Exact truncation law** for Cunningham chains ($m \le q - 3$) proved via modular obstruction.
-   * **Spectral analysis** of Guy Robin's criterion for the Riemann Hypothesis on square-free primorial wheels $V_r$ and weighted wheels $\widetilde{V}_r$.
-   * **5 theorems mechanically verified** in the **Lean 4** proof assistant.
-3. **Post-Quantum Unification ($q_n = 2^n \cdot K + 1$):**
-   * Instant deterministic generation and certification of NTT prime fields and primitive roots for **ML-KEM** ($q = 3,329$), **Falcon-1024** ($q = 12,289$), **BabyBear ZK-STARKs** ($q = 2,013,265,921$), 60-bit RNS chains (**FHE**), and **Safe Primes**.
+### Contenu du dépôt
+* **`la_machine_v21_proofs.lean`** : **16 théorèmes mathématiques complets** vérifiés mécaniquement par Lean 4 (`lake build`).
+* **`la_machine_v21.py`** : **12 modules algorithmiques Python** reproductibles avec suite complète de tests unitaires et benchmarks.
+* **`Livre_LaMachine_v22.tex`** : **Ouvrage complet** (Préface + 4 chapitres : Roues Primorielles & Mode Rafale, Cryptographie Post-Quantique NTT/K-RED/$\mathbb{F}_{p^2}$, Réduction de Goldbach & Théorème de Chen, Critère de Riemann / Guy Robin), compilé automatiquement en PDF via GitHub Actions.
+* **`LaMachine_v21.tex`** : Article scientifique de synthèse au format LaTeX.
 
 ---
 
-## Experimental Benchmarks (2,048-bit / 617-digit Prime)
+## Les 16 Théorèmes Formels Certifiés (`Lean 4`)
 
-Real-world measurements conducted at altitude $2^{2047} + 123,456,789$:
-
-| Architecture | L1/L2 Footprint | Pre-Fermat Elimination | With Base-2 Fermat | Measured Time (Pure Python) |
-| :--- | :---: | :---: | :---: | :---: |
-| **v18.1** ($V_4$ + 2x 64-bit GCD reg.) | $0.98\,\text{KB}$ | $87.550\%$ | $> 99.9999\%$ | $4,617.37\,\text{ms}$ ($169$ mod. tests) |
-| **v21.1 Burst** ($V_5$ + Mod. Inv. $10^6$) | $45.97\,\text{KB}$ | $97.820\%$ | $> 99.9999\%$ | $4,752.47\,\text{ms}$ (amortized block) |
-| **v21.1 Target** ($V_5$ + Diff. $10^4$) | **$13.97\,\text{KB}$** | **$95.120\%$** | **$> 99.9999\%$** | **$2,975.50\,\text{ms}$ ($95$ mod. tests)** |
-
----
-
-## Repository Structure
-
-* `la_machine_v21.py` — Dual-mode engine (Single-Target & Burst), deterministic primality & Lucas-Pocklington certification.
-* `la_machine_v21_proofs.lean` — 5 formal theorems verified in Lean 4 / Mathlib.
-* `LaMachine_v21.tex` — Consolidated scientific paper (v21.1).
-* `lakefile.toml` & `lean-toolchain` — Lean 4 build configuration.
+1. `mirrorWheelSym` — Symétrie miroir des unités modulo le socle primoriel $S_r$.
+2. `scaleTrunc` — Troncature d'échelle du Mode Rafale (`next_prime_burst_mode`).
+3. `goldbachParamId` — Identité paramétrique exacte $P_m + Q_m = N$.
+4. `goldbachCoprimeQ` — Préservation de la coprimalité $\gcd(Q_m, S) = 1$ le long des progressions.
+5. `cunninghamModObstruction` — Obstruction modulaire des chaînes de Cunningham.
+6. `robinWeightedWheelDiv` — Divisibilité des roues pondérées $\widetilde{V}_r$ pour le critère de Guy Robin.
+7. `nttProthStructure` — Structure algébrique des corps premiers de Proth $p = k \cdot 2^n + 1$.
+8. `goldbachPairSymmetry` — Symétrie involutive des couples admissibles $(Q, N - Q)$ modulo $S$.
+9. `chenFactorsCoprimeWheel` — Coprimalité individuelle des facteurs de Chen ($N = p + q_1 q_2$) avec $S$.
+10. `prothHalfExponent` — Demi-exposant de Proth $(p-1)/2 = k \cdot 2^{n-1}$.
+11. `nttPrimitiveRootPower` — Ordre multiplicatif exact $2^n$ des racines primitives NTT.
+12. `prothFastReductionIdentity` — Réduction modulaire rapide sans division matérielle.
+13. `prothKRedTwoLayers` — Stabilité multiplicative sur deux couches de la réduction paresseuse K-RED.
+14. `nttButterflyExactInverse` — Inversion algébrique exacte du papillon NTT / INTT.
+15. `fp2KaratsubaExact` — Exactitude de la multiplication de Karatsuba dans $\mathbb{F}_{p^2} = \mathbb{F}_p[u]/(u^2 - \beta)$.
+16. `abundanceFactorStrictGrowth` — Croissance géométrique stricte du facteur d'abondance (Riemann / Guy Robin).
 
 ---
 
 ## Citation
 
-```bibtex
-@article{ghali2026machine,
-  title   = {The Jumpers Model — La Machine (v7.0 to v21.1): Dual-Mode Prime Isolation in Bounded O(1) Memory, Lean 4 Formal Proofs, and Post-Quantum Cryptography},
-  author  = {Ghali, Mohamed},
-  year    = {2026},
-  month   = {November}
-}
-```
+> Ghali, M. (2026). *La Machine v23.0 : Arithmétique des Roues Primorielles, Cryptographie Post-Quantique NTT et Certification Formelle en Lean 4*. GitHub / Zenodo. ORCID : 0009-0006-3364-5341.
