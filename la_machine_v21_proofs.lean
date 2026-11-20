@@ -77,4 +77,31 @@ theorem robinWeightedWheelDiv (V W p : Nat) (h_mul : Exists fun k => W = V * k)
   refine ⟨k2 * k1, ?_⟩
   rw [hk1, hk2, Nat.mul_assoc]
 
+-- 8. Symetrie involutive des couples admissibles de Goldbach modulo S
+theorem goldbachPairSymmetry (N Q S : Nat) (hQ : Q <= N)
+    (h_coprime : Nat.gcd Q S = 1 /\ Nat.gcd (N - Q) S = 1) :
+    Nat.gcd (N - Q) S = 1 /\ Nat.gcd (N - (N - Q)) S = 1 := by
+  have h_inv : N - (N - Q) = Q := Nat.sub_sub_self hQ
+  rw [h_inv]
+  exact ⟨h_coprime.2, h_coprime.1⟩
+
+-- 9. Coprimalite individuelle des facteurs de Chen (Q_m = q1 * q2) avec S
+theorem chenFactorsCoprimeWheel (q1 q2 S : Nat)
+    (h_cop : Nat.gcd (q1 * q2) S = 1) :
+    Nat.gcd q1 S = 1 /\ Nat.gcd q2 S = 1 := by
+  refine ⟨?_, ?_⟩
+  . apply Nat.dvd_antisymm _ (Nat.one_dvd _)
+    suffices Dvd.dvd (Nat.gcd q1 S) (Nat.gcd (q1 * q2) S) by
+      rw [h_cop] at this
+      exact this
+    exact Nat.dvd_gcd
+      (Nat.dvd_trans (Nat.gcd_dvd_left q1 S) (Nat.dvd_mul_right q1 q2))
+      (Nat.gcd_dvd_right q1 S)
+  . apply Nat.dvd_antisymm _ (Nat.one_dvd _)
+    suffices Dvd.dvd (Nat.gcd q2 S) (Nat.gcd (q1 * q2) S) by
+      rw [h_cop] at this
+      exact this
+    exact Nat.dvd_gcd
+      (Nat.dvd_trans (Nat.gcd_dvd_left q2 S) (Nat.dvd_mul_left q2 q1))
+      (Nat.gcd_dvd_right q2 S)
 
